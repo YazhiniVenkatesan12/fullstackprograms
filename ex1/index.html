@@ -1,41 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>YAZHINI - Portfolio</title>
-    <link rel="stylesheet" href="styles.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yazhini's Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About Me</a></li>
-                <li><a href="projects.html">Projects</a></li>
-                <li><a href="skills.html">Skills</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
+        <div class="container">
+            <h1>Yazhini's Portfolio</h1>
+            <nav>
+                <ul>
+                    <li><a href="#about">About Me</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
-    <main>
-        <section id="home">
-            <div class="hero">
-                <h1>Welcome to my portfolio!</h1>
-                <p>I'm YAZHINI, a B.Tech (IT) Student</p>
-                <a href="about.html" class="cta-button">Learn More</a>
-                <a href="contact.html" class="cta-button">Get in Touch</a>
-            </div>
-        </section>
-    </main>
+
+    <section id="hero">
+        <div class="container">
+            <h2>Hi, I'm Yazhini</h2>
+            <p>A passionate B.Tech (IT) student at Anna University, aspiring to become a skilled software engineer.</p>
+        </div>
+    </section>
+
+    <section id="about" class="container">
+        <h2>About Me</h2>
+        <p>I’m a third-year B.Tech (IT) student at Anna University. My passion for technology and software development drives me to continuously improve my skills. I aspire to become a proficient software engineer and contribute to groundbreaking projects that address real-world challenges.</p>
+        <p>Currently, I’m enhancing my programming skills and exploring emerging technologies. In my spare time, I enjoy coding, staying updated on tech trends, and working on personal projects.</p>
+        <p><strong>Hobbies & Interests:</strong>  Programming challenges, software development, exploring new technologies and frameworks, contributing to open-source projects and more.</p>
+    </section>
+
+    <section id="skills" class="container">
+        <h2>Skills</h2>
+        <ul>
+            <li>Programming Languages: C,Java, Python, JavaScript</li>
+            <li>Web Development: HTML, CSS, JavaScript, React</li>
+            <li>Database Management: MySQL, MongoDB</li>
+            <li>Version Control: Git, GitHub</li>
+        </ul>
+    </section>
+
+    <section id="contact" class="container">
+        <h2>Contact</h2>
+        <p>If you'd like to get in touch, feel free to reach out via email or connect with me on LinkedIn.</p>
+        <p>Email: <a href="mailto:yazhiniv120305@gmail.com">yazhiniv120305@gmail.com</a></p>
+        <p>LinkedIn: <a href="https://www.linkedin.com/in/yazhini-v-1854a7306" target="_blank">www.linkedin.com/in/yazhini-v-1854a7306</a></p>
+    </section>
+
     <footer>
-        <p>Thanks for visiting! Let's connect.</p>
-        <div class="social-links">
-            <a href="https://www.linkedin.com/in/yazhini-v-1854a7306">LinkedIn</a>
-            <a href="https://github.com/YazhiniVenkatesan12">GitHub</a>
-            <a href="mailto:yazhiniv120305@gmail.com">Email</a>
+        <div class="container">
+            <p>&copy; 2024 Yazhini. All rights reserved.</p>
+            <div class="social-links">
+                <a href="https://github.com/YazhiniVenkatesan12" target="_blank">GitHub</a>
+                <a href="https://www.linkedin.com/in/yazhini-v-1854a7306" target="_blank">LinkedIn</a>
+            </div>
         </div>
     </footer>
+
     <script src="script.js"></script>
 </body>
 </html>
