@@ -1,0 +1,109 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #121212; /* Dark background for a modern look */
+    color: #e0e0e0; /* Light grey text color for contrast */
+}
+
+header {
+    background-color: #1f1f1f; /* Dark header background */
+    color: #e0e0e0; /* Light text color in the header */
+    padding: 15px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Subtle shadow for header */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center; /* Centered navigation links */
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: #e0e0e0; /* Light text color for navigation links */
+    text-decoration: none;
+    font-weight: 500;
+    padding: 10px 20px;
+    display: block;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+nav ul li a:hover {
+    background-color: #333333; /* Slightly lighter dark background on hover */
+    color: #ffffff; /* White text on hover */
+    border-radius: 5px; /* Rounded corners on hover */
+}
+
+.hero {
+    text-align: center;
+    padding: 120px 20px;
+    background-color: #1a1a1a; /* Darker section background for contrast */
+    color: #e0e0e0; /* Light text color for contrast */
+}
+
+.hero h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    text-transform: capitalize; /* Capitalized heading for a modern look */
+}
+
+.hero p {
+    font-size: 1.1em;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.cta-button {
+    display: inline-block;
+    margin: 10px;
+    padding: 15px 25px;
+    background-color: #333333; /* Dark background for CTA buttons */
+    color: #e0e0e0; /* Light text color */
+    text-decoration: none;
+    border-radius: 25px; /* Rounded button */
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.cta-button:hover {
+    background-color: #555555; /* Lighter dark background on hover */
+    transform: scale(1.05); /* Slight zoom effect on hover */
+}
+
+section {
+    padding: 60px 20px;
+    margin: 20px 0;
+    background-color: #1a1a1a; /* Dark background for sections */
+    color: #e0e0e0; /* Light text color */
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Deeper shadow for sections */
+}
+
+footer {
+    background-color: #1f1f1f; /* Dark background for the footer */
+    color: #e0e0e0; /* Light text color in the footer */
+    text-align: center;
+    padding: 20px 0;
+    border-top: 2px solid #333333; /* Darker top border for the footer */
+}
+
+.social-links a {
+    color: #e0e0e0; /* Light text color for social links */
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: 500;
+    transition: color 0.3s, transform 0.3s;
+}
+
+.social-links a:hover {
+    color: #ffffff; /* Bright white on hover */
+    transform: scale(1.1); /* Slight zoom effect on hover */
+}
