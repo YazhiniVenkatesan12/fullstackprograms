@@ -1,0 +1,13 @@
+<h2>Your Feed</h2>
+<ul>
+    <% posts.forEach(post => { %>
+        <li>
+            <p><%= post.content %></p>
+            <p>By <%= post.user.username %></p>
+            <form action="/post/like/<%= post._id %>" method="POST" style="display: inline;">
+                <button type="submit">Like (<%= post.likes.length %>)</button>
+            </form>
+        </li>
+    <% }) %>
+</ul>
+<a href="/dashboard">Back to Dashboard</a>

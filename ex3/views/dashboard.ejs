@@ -1,0 +1,21 @@
+<h2>Dashboard</h2>
+<p>Welcome, <%= user.username %>!</p>
+<a href="/logout">Logout</a>
+
+<h3>Create Post</h3>
+<form action="/post/create" method="POST">
+    <textarea name="content" placeholder="What's on your mind?" required></textarea>
+    <button type="submit">Post</button>
+</form>
+
+<h3>Follow Users</h3>
+<ul>
+    <% users.forEach(user => { %>
+        <li>
+            <%= user.username %> 
+            <form action="/follow/<%= user._id %>" method="POST" style="display: inline;">
+                <button type="submit">Follow</button>
+            </form>
+        </li>
+    <% }) %>
+</ul>
