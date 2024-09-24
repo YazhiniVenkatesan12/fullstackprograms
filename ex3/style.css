@@ -1,0 +1,138 @@
+/* General Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f4f4f4;
+    color: #333;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header {
+    background-color: #007bff;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Main Content */
+main {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+}
+
+/* Forms */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+input, textarea {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+button {
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Login/Register Forms */
+#login-form, #register-form {
+    margin-bottom: 20px;
+}
+
+#login-form {
+    display: block;
+}
+
+#register-form {
+    display: none;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Feed Section */
+#feed-section {
+    display: none;
+}
+
+#post-form {
+    margin-bottom: 20px;
+}
+
+#post-content {
+    width: 100%;
+    min-height: 100px;
+}
+
+#posts-container, #users-container {
+    margin-bottom: 20px;
+}
+
+.post {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.post-image {
+    max-width: 100%;
+    margin-top: 10px;
+    border-radius: 4px;
+}
+
+.post p {
+    margin: 5px 0;
+}
+
+.post button {
+    margin-right: 5px;
+}
+
+/* Comments Section */
+.post ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.post ul li {
+    background-color: #f1f1f1;
+    padding: 5px;
+    margin: 5px 0;
+    border-radius: 4px;
+}

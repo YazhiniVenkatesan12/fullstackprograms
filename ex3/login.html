@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Microblogging App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Login to Microblogging Application</h1>
+    </header>
+    <main>
+        <form id="login-form">
+            <input type="text" id="username" placeholder="Username" required><br><br>
+            <input type="password" id="password" placeholder="Password" required><br><br>
+            <button type="submit">Login</button>
+        </form>
+        <p>Don't have an account? <a href="#" onclick="showRegisterForm()">Register here</a></p>
+        <form id="register-form" style="display:none;">
+            <input type="text" id="new-username" placeholder="Username" required><br><br>
+            <input type="password" id="new-password" placeholder="Password" required><br><br>
+            <button type="submit">Register</button>
+        </form>
+    </main>
+    <script>
+        const users = []; // Array to store users
+        const loginForm = document.getElementById('login-form');
+        const registerForm = document.getElementById('register-form');
+
+        // Show register form
+        function showRegisterForm() {
+            registerForm.style.display = 'block';
+            loginForm.style.display = 'none';
+        }
+
+        // Handle registration
+        registerForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const username = document.getElementById('new-username').value;
+            const password = document.getElementById('new-password').value;
+
+            // Check for existing user
+            if (users.find(user => user.username === username)) {
+                alert('User already exists');
+                return;
+            }
+
+            // Register new user
+            users.push({ username, password });
+            alert('Registration successful! You can now log in.');
+            registerForm.reset();
+            registerForm.style.display = 'none';
+            loginForm.style.display = 'block';
+        });
+
+        // Handle login
+        loginForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // Check if the user exists
+            const user = users.find(u => u.username === username && u.password === password);
+            if (user) {
+                // Store username in local storage
+                localStorage.setItem('username', username);
+                // Redirect to the main app
+                window.location.href = 'index.html'; // Ensure this matches your main app filename
+            } else {
+                alert('Invalid username or password');
+            }
+        });
+    </script>
+</body>
+</html>
