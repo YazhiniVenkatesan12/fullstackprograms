@@ -1,7 +1,0 @@
-mkdir simple-microblog
-cd simple-microblog
-npm init -y
-
-
-
-npm install express mongoose bcryptjs express-session connect-flash passport passport-local ejs
