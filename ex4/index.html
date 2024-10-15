@@ -6,30 +6,32 @@
     <title>Food Delivery Service</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <header>
         <h1>Food Delivery Service</h1>
         <p>Order your favorite meals from various restaurants</p>
+        <input type="text" id="username" placeholder="Enter your name" oninput="greetUser()">
+        <h2 id="greeting" style="display: none;"></h2>
         <input type="text" id="search" placeholder="Search restaurants..." oninput="filterRestaurants()">
-        <button id="login-btn" onclick="toggleModal('login')">Login</button>
-        <button id="register-btn" onclick="toggleModal('register')">Register</button>
     </header>
 
     <main>
         <section class="restaurants">
             <h2>Our Restaurants</h2>
-            <div id="restaurant-list" class="restaurant-list"></div>
+            <div id="restaurant-list" class="restaurant-list">
+                <!-- Restaurant list will be injected here via JavaScript -->
+            </div>
         </section>
 
         <section class="cart">
             <h2>Your Cart</h2>
-            <ul id="cart-items"></ul>
+            <ul id="cart-items">
+                <!-- Cart items will be injected here -->
+            </ul>
             <div class="total">
                 <p>Total: $<span id="total-price">0.00</span></p>
                 <button id="place-order" type="button" onclick="placeOrder()">Place Order</button>
-                <button id="clear-cart" type="button" onclick="clearCart()">Clear Cart</button>
             </div>
         </section>
     </main>
@@ -37,19 +39,6 @@
     <footer>
         <p>&copy; 2024 Food Delivery Service</p>
     </footer>
-
-    <div id="modal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="toggleModal()">&times;</span>
-            <h2 id="modal-title">Login</h2>
-            <div id="modal-body">
-                <input type="text" id="username" placeholder="Username">
-                <input type="password" id="password" placeholder="Password">
-                <button id="submit-btn" onclick="login()">Login</button>
-                <p>Don't have an account? <a href="#" onclick="toggleModal('register')">Register</a></p>
-            </div>
-        </div>
-    </div>
 
     <script src="script.js"></script>
 </body>
