@@ -1,0 +1,81 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #000000, #1a1a1a); /* Dark gradient */
+    color: #e0e0e0; /* Light gray for contrast */
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    transition: background 0.5s;
+}
+
+header {
+    background-color: #003366; /* Dark blue */
+    color: #ffffff; /* White text */
+    text-align: center;
+    padding: 1.5rem;
+    font-size: 2.5rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    border-radius: 0 0 20px 20px;
+}
+
+main {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #1c1c1c; /* Dark gray */
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+}
+
+h2 {
+    margin-bottom: 1rem;
+    color: #1e90ff; /* Bright blue */
+}
+
+input,
+textarea,
+button {
+    margin: 0.5rem 0;
+    padding: 0.7rem;
+    width: 100%;
+    border: 1px solid #444; /* Darker gray */
+    border-radius: 5px;
+    transition: border 0.3s, box-shadow 0.3s;
+}
+
+input:focus,
+textarea:focus {
+    border-color: #1e90ff; /* Bright blue */
+    box-shadow: 0 0 5px rgba(30, 144, 255, 0.5);
+}
+
+button {
+    background-color: #1e90ff; /* Bright blue */
+    color: #ffffff; /* White text */
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+button:hover {
+    background-color: #0056b3; /* Darker blue */
+    transform: translateY(-2px);
+}
+
+ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+li {
+    border: 1px solid #444; /* Dark gray */
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 5px;
+    background-color: #2a2a2a; /* Slightly lighter gray */
+    transition: background 0.3s;
+}
+
+li:hover {
+    background-color: #3c3c3c; /* Darker gray */
+}
