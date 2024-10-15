@@ -3,19 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Food Delivery</title>
+    <title>Food Delivery Service</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
         <h1>Food Delivery Service</h1>
         <p>Order your favorite meals from various restaurants</p>
+        <input type="text" id="search" placeholder="Search restaurants..." oninput="filterRestaurants()">
     </header>
 
     <main>
         <section class="restaurants">
             <h2>Our Restaurants</h2>
-            <div id="restaurant-list">
+            <div id="restaurant-list" class="restaurant-list">
                 <!-- Restaurant list will be injected here via JavaScript -->
             </div>
         </section>
@@ -27,7 +29,7 @@
             </ul>
             <div class="total">
                 <p>Total: $<span id="total-price">0.00</span></p>
-                <button id="place-order" onclick="placeOrder()">Place Order</button>
+                <button id="place-order" type="button" onclick="placeOrder()">Place Order</button>
             </div>
         </section>
     </main>
