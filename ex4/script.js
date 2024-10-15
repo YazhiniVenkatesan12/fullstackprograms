@@ -1,6 +1,7 @@
 const restaurantList = document.getElementById('restaurant-list');
 const cartItems = document.getElementById('cart-items');
 const totalPriceElem = document.getElementById('total-price');
+const searchInput = document.getElementById('search');
 
 const restaurants = [
     { id: 1, name: 'Sushi House', image: 'sushi-house.jpg', menu: [{ name: 'California Roll', price: 10 }, { name: 'Tuna Sashimi', price: 15 }, { name: 'Tempura Udon', price: 12 }] },
@@ -21,7 +22,10 @@ function displayRestaurants() {
             <img src="${restaurant.image}" alt="${restaurant.name}" class="restaurant-image">
             <h3>${restaurant.name}</h3>
             <h4>Menu</h4>
-            <ul>${restaurant.menu.map(item => `<li>${item.name} - $${item.price} <button onclick="orderFood(${restaurant.id}, '${restaurant.name}', '${item.name}', ${item.price})">Order</button></li>`).join('')}</ul>
+            <ul>${restaurant.menu.map(item => `
+                <li>${item.name} - $${item.price} 
+                <button onclick="orderFood(${restaurant.id}, '${restaurant.name}', '${item.name}', ${item.price})">Order</button></li>`).join('')}
+            </ul>
         `;
         restaurantList.appendChild(div);
     });
@@ -35,13 +39,19 @@ function orderFood(restaurantId, restaurantName, foodName, price) {
 function updateCart() {
     cartItems.innerHTML = '';
     let total = 0;
-    cart.forEach(item => {
+    cart.forEach((item, index) => {
         const li = document.createElement('li');
-        li.textContent = `${item.foodName} from ${item.restaurantName} - $${item.price}`;
+        li.innerHTML = `${item.foodName} from ${item.restaurantName} - $${item.price} 
+        <button onclick="removeFromCart(${index})">Remove</button>`;
         cartItems.appendChild(li);
         total += item.price;
     });
     totalPriceElem.textContent = total.toFixed(2);
+}
+
+function removeFromCart(index) {
+    cart.splice(index, 1);
+    updateCart();
 }
 
 function placeOrder() {
@@ -52,6 +62,26 @@ function placeOrder() {
     alert(`Your order has been placed! Total: $${totalPriceElem.textContent}`);
     cart = []; // Clear the cart after placing the order
     updateCart();
+}
+
+function filterRestaurants() {
+    const query = searchInput.value.toLowerCase();
+    const filteredRestaurants = restaurants.filter(restaurant => restaurant.name.toLowerCase().includes(query));
+    restaurantList.innerHTML = '';
+    filteredRestaurants.forEach(restaurant => {
+        const div = document.createElement('div');
+        div.classList.add('restaurant');
+        div.innerHTML = `
+            <img src="${restaurant.image}" alt="${restaurant.name}" class="restaurant-image">
+            <h3>${restaurant.name}</h3>
+            <h4>Menu</h4>
+            <ul>${restaurant.menu.map(item => `
+                <li>${item.name} - $${item.price} 
+                <button onclick="orderFood(${restaurant.id}, '${restaurant.name}', '${item.name}', ${item.price})">Order</button></li>`).join('')}
+            </ul>
+        `;
+        restaurantList.appendChild(div);
+    });
 }
 
 // Initialize the app
