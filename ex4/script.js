@@ -2,16 +2,21 @@ const restaurantList = document.getElementById('restaurant-list');
 const cartItems = document.getElementById('cart-items');
 const totalPriceElem = document.getElementById('total-price');
 const searchInput = document.getElementById('search');
-
-const restaurants = [
-    { id: 1, name: 'Sushi House', image: 'sushi-house.jpg', menu: [{ name: 'California Roll', price: 10 }, { name: 'Tuna Sashimi', price: 15 }, { name: 'Tempura Udon', price: 12 }] },
-    { id: 2, name: 'Taco Place', image: 'taco-place.jpg', menu: [{ name: 'Chicken Taco', price: 5 }, { name: 'Beef Burrito', price: 7 }, { name: 'Veggie Quesadilla', price: 6 }] },
-    { id: 3, name: 'Pasta Bistro', image: 'pasta-bistro.jpg', menu: [{ name: 'Spaghetti Carbonara', price: 11 }, { name: 'Fettuccine Alfredo', price: 10 }, { name: 'Pesto Penne', price: 12 }] },
-    { id: 4, name: 'Curry Corner', image: 'curry-corner.jpg', menu: [{ name: 'Chicken Curry', price: 9 }, { name: 'Paneer Tikka Masala', price: 8 }, { name: 'Vegetable Biryani', price: 7 }] },
-    { id: 5, name: 'Salad Bar', image: 'salad-bar.jpg', menu: [{ name: 'Caesar Salad', price: 6 }, { name: 'Greek Salad', price: 7 }, { name: 'Quinoa Salad', price: 8 }] }
-];
-
+const usernameInput = document.getElementById('username');
+const greetingElem = document.getElementById('greeting');
 let cart = [];
+
+// Sample restaurant data
+const restaurants = [
+    { id: 1, name: 'Sushi House', image: 'sushi-house.jpg', menu: [{ name: 'California Roll', price: 10 }, { name: 'Tuna Sashimi', price: 15 }] },
+    { id: 2, name: 'Taco Place', image: 'taco-place.jpg', menu: [{ name: 'Chicken Taco', price: 5 }, { name: 'Beef Burrito', price: 7 }] },
+    { id: 3, name: 'Pasta Bistro', image: 'pasta-bistro.jpg', menu: [{ name: 'Spaghetti Carbonara', price: 11 }, { name: 'Fettuccine Alfredo', price: 10 }] },
+    { id: 4, name: 'Curry Corner', image: 'curry-corner.jpg', menu: [{ name: 'Chicken Curry', price: 9 }, { name: 'Paneer Tikka Masala', price: 8 }] },
+    { id: 5, name: 'Salad Bar', image: 'salad-bar.jpg', menu: [{ name: 'Caesar Salad', price: 6 }, { name: 'Greek Salad', price: 7 }] },
+    { id: 6, name: 'Pizza Paradise', image: 'pizza-paradise.jpg', menu: [{ name: 'Margherita Pizza', price: 12 }, { name: 'Pepperoni Pizza', price: 14 }] },
+    { id: 7, name: 'Burger Shack', image: 'burger-shack.jpg', menu: [{ name: 'Cheeseburger', price: 9 }, { name: 'Veggie Burger', price: 8 }] },
+    { id: 8, name: 'Seafood Delight', image: 'seafood-delight.jpg', menu: [{ name: 'Grilled Salmon', price: 15 }, { name: 'Shrimp Scampi', price: 14 }] },
+];
 
 function displayRestaurants() {
     restaurantList.innerHTML = '';
@@ -24,14 +29,14 @@ function displayRestaurants() {
             <h4>Menu</h4>
             <ul>${restaurant.menu.map(item => `
                 <li>${item.name} - $${item.price} 
-                <button onclick="orderFood(${restaurant.id}, '${restaurant.name}', '${item.name}', ${item.price})">Order</button></li>`).join('')}
+                <button onclick="orderFood('${restaurant.name}', '${item.name}', ${item.price})">Order</button></li>`).join('')}
             </ul>
         `;
         restaurantList.appendChild(div);
     });
 }
 
-function orderFood(restaurantId, restaurantName, foodName, price) {
+function orderFood(restaurantName, foodName, price) {
     cart.push({ restaurantName, foodName, price });
     updateCart();
 }
@@ -41,8 +46,7 @@ function updateCart() {
     let total = 0;
     cart.forEach((item, index) => {
         const li = document.createElement('li');
-        li.innerHTML = `${item.foodName} from ${item.restaurantName} - $${item.price} 
-        <button onclick="removeFromCart(${index})">Remove</button>`;
+        li.innerHTML = `${item.foodName} from ${item.restaurantName} - $${item.price} <button onclick="removeFromCart(${index})">Remove</button>`;
         cartItems.appendChild(li);
         total += item.price;
     });
@@ -77,12 +81,22 @@ function filterRestaurants() {
             <h4>Menu</h4>
             <ul>${restaurant.menu.map(item => `
                 <li>${item.name} - $${item.price} 
-                <button onclick="orderFood(${restaurant.id}, '${restaurant.name}', '${item.name}', ${item.price})">Order</button></li>`).join('')}
+                <button onclick="orderFood('${restaurant.name}', '${item.name}', ${item.price})">Order</button></li>`).join('')}
             </ul>
         `;
         restaurantList.appendChild(div);
     });
 }
 
-// Initialize the app
+function greetUser() {
+    const username = usernameInput.value.trim();
+    if (username) {
+        greetingElem.textContent = `Hello, ${username}!`;
+        greetingElem.style.display = 'block';
+    } else {
+        greetingElem.style.display = 'none';
+    }
+}
+
+// Initially display all restaurants
 displayRestaurants();
