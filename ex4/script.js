@@ -114,6 +114,19 @@ function loadCart() {
         updateCart();
     }
 }
+function redirectToPayment() {
+    if (cart.length === 0) {
+        alert('Your cart is empty. Please add items to your cart before checking out.');
+        return;
+    }
+    
+    // Save total price to localStorage to access in the payment.html
+    const totalPrice = parseFloat(totalPriceElem.textContent);
+    localStorage.setItem('totalPrice', totalPrice);
+
+    // Redirect to the payment page
+    window.location.href = 'payment.html';
+}
 
 let debounceTimer;
 loadCart();
