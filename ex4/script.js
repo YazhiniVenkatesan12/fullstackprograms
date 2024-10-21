@@ -24,7 +24,7 @@ function displayRestaurants() {
         const div = document.createElement('div');
         div.classList.add('restaurant');
         div.innerHTML = `
-            <img src="${restaurant.image}" alt="${restaurant.name}" class="restaurant-image">
+            <img loading="lazy" src="${restaurant.image}" alt="${restaurant.name}" class="restaurant-image">
             <h3>${restaurant.name}</h3>
             <h4>Menu</h4>
             <ul>${restaurant.menu.map(item => `
@@ -37,7 +37,12 @@ function displayRestaurants() {
 }
 
 function orderFood(restaurantName, foodName, price) {
-    cart.push({ restaurantName, foodName, price });
+    const existingItem = cart.find(item => item.restaurantName === restaurantName && item.foodName === foodName);
+    if (existingItem) {
+        existingItem.quantity += 1;
+    } else {
+        cart.push({ restaurantName, foodName, price, quantity: 1 });
+    }
     updateCart();
 }
 
@@ -46,11 +51,14 @@ function updateCart() {
     let total = 0;
     cart.forEach((item, index) => {
         const li = document.createElement('li');
-        li.innerHTML = `${item.foodName} from ${item.restaurantName} - $${item.price} <button onclick="removeFromCart(${index})">Remove</button>`;
+        li.innerHTML = `${item.foodName} from ${item.restaurantName} (x${item.quantity}) - $${item.price * item.quantity} 
+            <button onclick="removeFromCart(${index})">Remove</button>`;
         cartItems.appendChild(li);
-        total += item.price;
+        total += item.price * item.quantity;
     });
     totalPriceElem.textContent = total.toFixed(2);
+    localStorage.setItem('cart', JSON.stringify(cart)); // Persist cart
+    localStorage.setItem('totalPrice', total.toFixed(2)); // Persist total price
 }
 
 function removeFromCart(index) {
@@ -63,29 +71,30 @@ function placeOrder() {
         alert('Your cart is empty. Please add items to your cart before placing an order.');
         return;
     }
-    alert(`Your order has been placed! Total: $${totalPriceElem.textContent}`);
-    cart = []; // Clear the cart after placing the order
-    updateCart();
+    window.location.href = 'payment.html'; // Navigate to payment page
 }
 
 function filterRestaurants() {
-    const query = searchInput.value.toLowerCase();
-    const filteredRestaurants = restaurants.filter(restaurant => restaurant.name.toLowerCase().includes(query));
-    restaurantList.innerHTML = '';
-    filteredRestaurants.forEach(restaurant => {
-        const div = document.createElement('div');
-        div.classList.add('restaurant');
-        div.innerHTML = `
-            <img src="${restaurant.image}" alt="${restaurant.name}" class="restaurant-image">
-            <h3>${restaurant.name}</h3>
-            <h4>Menu</h4>
-            <ul>${restaurant.menu.map(item => `
-                <li>${item.name} - $${item.price} 
-                <button onclick="orderFood('${restaurant.name}', '${item.name}', ${item.price})">Order</button></li>`).join('')}
-            </ul>
-        `;
-        restaurantList.appendChild(div);
-    });
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(() => {
+        const query = searchInput.value.toLowerCase();
+        const filteredRestaurants = restaurants.filter(restaurant => restaurant.name.toLowerCase().includes(query));
+        restaurantList.innerHTML = '';
+        filteredRestaurants.forEach(restaurant => {
+            const div = document.createElement('div');
+            div.classList.add('restaurant');
+            div.innerHTML = `
+                <img loading="lazy" src="${restaurant.image}" alt="${restaurant.name}" class="restaurant-image">
+                <h3>${restaurant.name}</h3>
+                <h4>Menu</h4>
+                <ul>${restaurant.menu.map(item => `
+                    <li>${item.name} - $${item.price} 
+                    <button onclick="orderFood('${restaurant.name}', '${item.name}', ${item.price})">Order</button></li>`).join('')}
+                </ul>
+            `;
+            restaurantList.appendChild(div);
+        });
+    }, 300); // Debounce for 300ms
 }
 
 function greetUser() {
@@ -98,5 +107,14 @@ function greetUser() {
     }
 }
 
-// Initially display all restaurants
+function loadCart() {
+    const savedCart = localStorage.getItem('cart');
+    if (savedCart) {
+        cart = JSON.parse(savedCart);
+        updateCart();
+    }
+}
+
+let debounceTimer;
+loadCart();
 displayRestaurants();
