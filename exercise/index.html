@@ -6,57 +6,62 @@
     <title>fswd programs</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-        background-image: url(pexels-jplenio-1103970.jpg);
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center;
-        color: #333;
-        margin: 0;
-        padding: 0;
-        height: 100%;
-        width: 100%;
-        min-height: 100vh;
-        text-align: center;
+            font-family: 'Arial', sans-serif;
+            background-image: url('pexels-jplenio-1103970.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            min-height: 100vh;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
 
         h1 {
-            color: #2c3e50;
-            margin-top: 50px;
-            font-size: 2.5em;
-            text-align: center;
+            color: #ecf0f1;
+            margin-top: 20px;
+            font-size: 3em;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
         }
 
         p {
-            color: #000000;
-            font-size: 1.2em;
-            margin: 20px 0;
-            text-align: center;
+            color: #dcdcdc;
+            font-size: 1.5em;
+            margin: 10px 0 30px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
         }
 
         .button {
-            text-decoration: none;
-            color: #fff;
             background-color: #3498db;
+            color: #fff;
             font-size: 1.2em;
             display: inline-block;
             margin: 10px 0;
-            padding: 10px 20px;
-            border-radius: 5px;
-            transition: background-color 0.3s, color 0.3s;
-            text-align: center;
-            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            transition: background-color 0.3s, transform 0.3s;
+            text-decoration: none;
             cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
 
         .button:hover {
             background-color: #2980b9;
+            transform: translateY(-3px);
         }
 
         .container {
             max-width: 800px;
             margin: 0 auto;
             padding: 20px;
+            text-align: center;
         }
 
         .footer {
@@ -78,6 +83,9 @@
         function fooddelivery(){
             window.open('https://yazhinivenkatesan12.github.io/fullstackwebdev/ex4/index.html','_blank');
 }
+        function reselling(){
+            window.open('https://yazhinivenkatesan12.github.io/fullstackwebdev/ex5/index.html','_blank');
+}
     </script>
 </head>
 <body>
@@ -90,6 +98,8 @@
      <span class="button" onclick="microblog()">3) MICROBLOG</span>
     <br>
      <span class="button" onclick="fooddelivery()">4) FOOD DELIVERY</span>
+    <br>
+    <span class="button" onclick="reselling()">5) RESELLING USED PRODUCTS</span>
     <br>
 
 </body>
