@@ -1,52 +1,23 @@
 let products = [];
 let cart = [];
 
+// Initial products array
 products = [
-    {
-        name: 'Bicycle',
-        price: 5000,
-        description: 'Used bicycle in good condition.',
-        image: 'bicycle.jpg',
-        reviews: [
-            { rating: 4, comment: "Great bike, rides smooth!" },
-            { rating: 5, comment: "Amazing value for money." }
-        ]
-    },
-    {
-        name: 'Camera',
-        price: 3000,
-        description: 'Vintage camera for sale.',
-        image: 'camera.jpg',
-        reviews: [
-            { rating: 3, comment: "Works well but a bit outdated." }
-        ]
-    },
-    {
-        name: 'Smartphone',
-        price: 15000,
-        description: 'Latest model smartphone.',
-        image: 'smartphone.jpg',
-        reviews: [{rating: 4, comment:"Works great!"},{ rating: 5, comment: "Amazing features!" },
-        { rating: 3, comment: "Good value for money." }]
-    },
-    {
-        name: 'Leather Jacket',
-        price: 500,
-        description: 'cool design.',
-        image: 'jacket.jpg',
-        reviews: [{ rating: 5, comment: "Stylish and comfortable!" },
-        { rating: 4, comment: "Perfect for winter." }]
-    },
-    {
-        name: 'Gamming Console',
-        price: 6000,
-        description: 'Latest model console.',
-        image: 'console.jpg',
-        reviews: [{ rating: 4, comment: "Great gaming experience!" },{ rating: 2, comment: "Had some issues with loading." },
-        { rating: 5, comment: "Love the graphics!" },
-        ]
-    }
+    // Your existing product objects...
 ];
+
+// Load products from localStorage if available
+if (localStorage.getItem('products')) {
+    products = JSON.parse(localStorage.getItem('products'));
+} else {
+    // Store initial products in localStorage
+    localStorage.setItem('products', JSON.stringify(products));
+}
+
+// Load cart from localStorage if available
+if (localStorage.getItem('cart')) {
+    cart = JSON.parse(localStorage.getItem('cart'));
+}
 
 // Function to display products
 function displayProducts() {
@@ -76,6 +47,7 @@ function displayProducts() {
         productList.appendChild(div);
     });
 }
+
 function getProductReviews(product) {
     if (product.reviews.length === 0) return '<p>No reviews yet.</p>';
     return product.reviews
@@ -92,6 +64,8 @@ function addReview(productIndex) {
 
     // Update the product list
     displayProducts();
+    // Save updated products to localStorage
+    localStorage.setItem('products', JSON.stringify(products));
 }
 
 function showCheckout() {
@@ -106,8 +80,9 @@ function toggleSellProductForm() {
     const form = document.getElementById('sell-product-form');
     form.style.display = form.style.display === 'none' ? 'block' : 'none';
 }
+
 function filterProducts() {
-    const maxPrice = parseFloat(document.getElementById('price-filter').value); // Convert to float
+    const maxPrice = parseFloat(document.getElementById('price-filter').value);
     document.getElementById('price-display').textContent = `$${maxPrice}`;
     
     const filteredProducts = products.filter(product => product.price <= maxPrice);
@@ -115,7 +90,7 @@ function filterProducts() {
     productList.innerHTML = '';
     
     if (filteredProducts.length === 0) {
-        productList.innerHTML = '<p>No products found in this price range.</p>'; // Message for no products
+        productList.innerHTML = '<p>No products found in this price range.</p>';
     } else {
         filteredProducts.forEach(product => {
             const div = document.createElement('div');
@@ -138,13 +113,17 @@ function register() {
     const address = document.getElementById('address').value;
 
     alert(`Registered Successfully!\nUsername: ${username}\nAddress: ${address}`);
-
     window.location.href = 'index.html';
 }
+
 function addToCart(name, price) {
     cart.push({ name, price });
     updateCart();
+    // Save cart to localStorage
+    localStorage.setItem('cart', JSON.stringify(cart));
+    alert('An item is added to your cart!');
 }
+
 function updateCart() {
     const cartItems = document.getElementById('cart-items');
     const totalPriceElem = document.getElementById('total-price');
@@ -154,7 +133,7 @@ function updateCart() {
     let total = 0;
     cart.forEach((item, index) => {
         const li = document.createElement('li');
-        li.innerHTML = li.innerHTML = `${item.name} - ₹${item.price}
+        li.innerHTML = `${item.name} - ₹${item.price}
             <button onclick="removeFromCart(${index})">Remove</button>
         `;
         cartItems.appendChild(li);
@@ -167,6 +146,9 @@ function updateCart() {
 function removeFromCart(index) {
     cart.splice(index, 1);
     updateCart();
+    // Save updated cart to localStorage
+    localStorage.setItem('cart', JSON.stringify(cart));
+    alert('An item is removed from your cart!');
 }
 
 function proceedToPayment() {
@@ -191,11 +173,11 @@ function addProduct() {
 
         products.push(newProduct);
         displayProducts();
+        // Save updated products to localStorage
+        localStorage.setItem('products', JSON.stringify(products));
     };
 
     reader.readAsDataURL(productImage);
-
-    // Clear form fields
     document.getElementById('sell-product-form').reset();
 }
 
@@ -209,3 +191,4 @@ function showSection(sectionId) {
 
 // Initialize product display
 displayProducts();
+updateCart(); // Initialize cart display
