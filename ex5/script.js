@@ -219,6 +219,7 @@ function addProduct() {
         displayProducts();
         // Save updated products to localStorage
         localStorage.setItem('products', JSON.stringify(products));
+        alert(`Your product has been added to the display for SALE!`);
     };
 
     reader.readAsDataURL(productImage);
