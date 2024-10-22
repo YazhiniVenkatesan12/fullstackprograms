@@ -121,7 +121,7 @@ function addToCart(name, price) {
     updateCart();
     // Save cart to localStorage
     localStorage.setItem('cart', JSON.stringify(cart));
-    alert('An item is added to your cart!');
+    alert(`An item is added to your cart!`);
 }
 
 function updateCart() {
@@ -148,7 +148,7 @@ function removeFromCart(index) {
     updateCart();
     // Save updated cart to localStorage
     localStorage.setItem('cart', JSON.stringify(cart));
-    alert('An item is removed from your cart!');
+    alert(`An item is removed from your cart!`);
 }
 
 function proceedToPayment() {
