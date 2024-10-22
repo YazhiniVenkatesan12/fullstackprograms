@@ -3,7 +3,50 @@ let cart = [];
 
 // Initial products array
 products = [
-    // Your existing product objects...
+     {
+        name: 'Bicycle',
+        price: 5000,
+        description: 'Used bicycle in good condition.',
+        image: 'bicycle.jpg',
+        reviews: [
+            { rating: 4, comment: "Great bike, rides smooth!" },
+            { rating: 5, comment: "Amazing value for money." }
+        ]
+    },
+    {
+        name: 'Camera',
+        price: 3000,
+        description: 'Vintage camera for sale.',
+        image: 'camera.jpg',
+        reviews: [
+            { rating: 3, comment: "Works well but a bit outdated." }
+        ]
+    },
+    {
+        name: 'Smartphone',
+        price: 15000,
+        description: 'Latest model smartphone.',
+        image: 'smartphone.jpg',
+        reviews: [{rating: 4, comment:"Works great!"},{ rating: 5, comment: "Amazing features!" },
+        { rating: 3, comment: "Good value for money." }]
+    },
+    {
+        name: 'Leather Jacket',
+        price: 500,
+        description: 'cool design.',
+        image: 'jacket.jpg',
+        reviews: [{ rating: 5, comment: "Stylish and comfortable!" },
+        { rating: 4, comment: "Perfect for winter." }]
+    },
+    {
+        name: 'Gamming Console',
+        price: 6000,
+        description: 'Latest model console.',
+        image: 'console.jpg',
+        reviews: [{ rating: 4, comment: "Great gaming experience!" },{ rating: 2, comment: "Had some issues with loading." },
+        { rating: 5, comment: "Love the graphics!" },
+        ]
+    }
 ];
 
 // Load products from localStorage if available
@@ -121,7 +164,7 @@ function addToCart(name, price) {
     updateCart();
     // Save cart to localStorage
     localStorage.setItem('cart', JSON.stringify(cart));
-    alert(`An item is added to your cart!`);
+    alert(`${name} has been added to your cart!`);
 }
 
 function updateCart() {
@@ -144,11 +187,12 @@ function updateCart() {
 }
 
 function removeFromCart(index) {
+    const removedItem = cart[index].name; // Get the name of the product to alert
     cart.splice(index, 1);
     updateCart();
     // Save updated cart to localStorage
     localStorage.setItem('cart', JSON.stringify(cart));
-    alert(`An item is removed from your cart!`);
+    alert(`${removedItem} has been removed from your cart.`);
 }
 
 function proceedToPayment() {
