@@ -1,9 +1,10 @@
 let products = [];
 let cart = [];
+let notifications = {}; // Object to store user notifications for products
 
 // Initial products array
 products = [
-     {
+    {
         name: 'Bicycle',
         price: 5000,
         description: 'Used bicycle in good condition.',
@@ -27,24 +28,31 @@ products = [
         price: 15000,
         description: 'Latest model smartphone.',
         image: 'smartphone.jpg',
-        reviews: [{rating: 4, comment:"Works great!"},{ rating: 5, comment: "Amazing features!" },
-        { rating: 3, comment: "Good value for money." }]
+        reviews: [
+            { rating: 4, comment: "Works great!" },
+            { rating: 5, comment: "Amazing features!" },
+            { rating: 3, comment: "Good value for money." }
+        ]
     },
     {
         name: 'Leather Jacket',
         price: 500,
-        description: 'cool design.',
+        description: 'Cool design.',
         image: 'jacket.jpg',
-        reviews: [{ rating: 5, comment: "Stylish and comfortable!" },
-        { rating: 4, comment: "Perfect for winter." }]
+        reviews: [
+            { rating: 5, comment: "Stylish and comfortable!" },
+            { rating: 4, comment: "Perfect for winter." }
+        ]
     },
     {
-        name: 'Gamming Console',
+        name: 'Gaming Console',
         price: 6000,
         description: 'Latest model console.',
         image: 'console.jpg',
-        reviews: [{ rating: 4, comment: "Great gaming experience!" },{ rating: 2, comment: "Had some issues with loading." },
-        { rating: 5, comment: "Love the graphics!" },
+        reviews: [
+            { rating: 4, comment: "Great gaming experience!" },
+            { rating: 2, comment: "Had some issues with loading." },
+            { rating: 5, comment: "Love the graphics!" }
         ]
     }
 ];
@@ -62,6 +70,11 @@ if (localStorage.getItem('cart')) {
     cart = JSON.parse(localStorage.getItem('cart'));
 }
 
+// Load notifications from localStorage if available
+if (localStorage.getItem('notifications')) {
+    notifications = JSON.parse(localStorage.getItem('notifications'));
+}
+
 // Function to display products
 function displayProducts() {
     const productList = document.getElementById('product-list');
@@ -76,6 +89,7 @@ function displayProducts() {
             <p>${product.description}</p>
             <p>Price: ₹${product.price}</p>
             <button onclick="addToCart('${product.name}', ${product.price})">Add to Cart</button>
+            <button onclick="subscribeToProduct('${product.name}')">Notify Me When Sold</button>
             <div class="reviews">
                 <h4>Reviews:</h4>
                 ${getProductReviews(product)}
@@ -144,6 +158,7 @@ function filterProducts() {
                 <p>${product.description}</p>
                 <p>Price: ₹${product.price.toFixed(2)}</p>
                 <button onclick="addToCart('${product.name}', ${product.price})">Add to Cart</button>
+                <button onclick="subscribeToProduct('${product.name}')">Notify Me When Sold</button>
             `;
             productList.appendChild(div);
         });
@@ -224,6 +239,39 @@ function addProduct() {
 
     reader.readAsDataURL(productImage);
     document.getElementById('sell-product-form').reset();
+}
+
+// Function to subscribe to product notifications
+function subscribeToProduct(productName) {
+    if (!notifications[productName]) {
+        notifications[productName] = [];
+    }
+    const email = prompt("Enter your email to subscribe for notifications:");
+    if (email) {
+        notifications[productName].push(email);
+        alert(`You will be notified when ${productName} is sold!`);
+        // Save updated notifications to localStorage
+        localStorage.setItem('notifications', JSON.stringify(notifications));
+    }
+}
+
+// Function to notify users when a product is sold
+function notifyUsers(productName) {
+    if (notifications[productName]) {
+        notifications[productName].forEach(email => {
+            alert(`Notifying ${email}: ${productName} has been sold!`);
+        });
+        // Clear notifications after sending
+        delete notifications[productName];
+        localStorage.setItem('notifications', JSON.stringify(notifications));
+    }
+}
+
+// Example of selling a product
+function sellProduct(productName) {
+    // Logic to sell the product
+    alert(`${productName} has been sold!`);
+    notifyUsers(productName); // Notify all subscribers
 }
 
 // Function to show different sections
