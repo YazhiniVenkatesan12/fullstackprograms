@@ -1,67 +1,204 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yazhini's Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yazhini V | Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #0f172a;
+      color: #f8fafc;
+      line-height: 1.6;
+    }
+    header {
+      background: rgba(15, 23, 42, 0.9);
+      position: fixed; width: 100%; top: 0; z-index: 1000;
+      padding: 15px 0;
+      backdrop-filter: blur(10px);
+    }
+    header .container {
+      display: flex; justify-content: space-between; align-items: center;
+      max-width: 1100px; margin: auto; padding: 0 20px;
+    }
+    nav ul { display: flex; list-style: none; }
+    nav li { margin-left: 20px; }
+    nav a {
+      text-decoration: none;
+      color: #f8fafc;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+    nav a:hover { color: #38bdf8; }
+
+    /* Hero Section */
+    #hero {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      height: 100vh;
+      text-align: center;
+      padding: 0 20px;
+      background: linear-gradient(135deg, #1e293b, #0f172a);
+    }
+    #hero h1 { font-size: 3rem; font-weight: 700; margin-bottom: 10px; }
+    #hero h1 span { color: #38bdf8; }
+    #hero p { font-size: 1.2rem; max-width: 600px; }
+    #hero .btn {
+      margin-top: 20px; padding: 10px 20px;
+      background: #38bdf8; color: #0f172a;
+      border: none; border-radius: 5px;
+      font-weight: 600; cursor: pointer;
+      transition: 0.3s;
+    }
+    #hero .btn:hover { background: #0ea5e9; }
+
+    /* Sections */
+    section {
+      max-width: 1100px; margin: auto; padding: 80px 20px;
+    }
+    h2 { font-size: 2rem; color: #38bdf8; margin-bottom: 20px; }
+    p { margin-bottom: 15px; }
+
+    /* Skills */
+    .skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 15px;
+  margin-top: 20px;
+}
+.skill-card {
+  background: #1e293b;
+  padding: 12px;
+  border-radius: 6px;
+  text-align: center;
+  font-size: 0.95rem;
+  transition: 0.3s ease;
+}
+.skill-card:hover {
+  background: #334155;
+  transform: translateY(-3px);
+}
+
+
+    /* Projects */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .project-card {
+      background: #1e293b;
+      border-radius: 8px;
+      padding: 20px;
+      transition: 0.3s;
+    }
+    .project-card:hover { transform: translateY(-5px); background: #334155; }
+    .project-card h3 { color: #38bdf8; margin-bottom: 10px; }
+
+    /* Contact */
+    .contact-links a {
+      color: #38bdf8;
+      text-decoration: none;
+      display: inline-block;
+      margin-right: 15px;
+    }
+    footer {
+      background: #0f172a;
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+      color: #94a3b8;
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1>Yazhini's Portfolio</h1>
-            <nav>
-                <ul>
-                    <li><a href="#about">About Me</a></li>
-                    <li><a href="#skills">Skills</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
 
-    <section id="hero">
-        <div class="container">
-            <h2>Hi, I'm Yazhini</h2>
-            <p>A passionate B.Tech (IT) student at Anna University, aspiring to become a skilled software engineer.</p>
-        </div>
-    </section>
+<header>
+  <div class="container">
+    <h1>Yazhini V</h1>
+    <nav>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
 
-    <section id="about" class="container">
-        <h2>About Me</h2>
-        <p>I’m a final-year B.Tech (IT) student at Anna University. My passion for technology and software development drives me to continuously improve my skills. I aspire to become a proficient software engineer and contribute to groundbreaking projects that address real-world challenges.</p>
-        <p>Currently, I’m enhancing my programming skills and exploring emerging technologies. In my spare time, I enjoy coding, staying updated on tech trends, and working on personal projects.</p>
-        <p><strong>Hobbies & Interests:</strong>  Programming challenges, software development, exploring new technologies and frameworks, contributing to open-source projects and more.</p>
-    </section>
+<section id="hero">
+  <h1>Hi, I'm <span>Yazhini</span> 👋</h1>
+  <p>A passionate B.Tech (IT) student at Anna University, aspiring to become a skilled software engineer and build impactful solutions.</p>
+  <button class="btn" onclick="document.getElementById('projects').scrollIntoView({behavior: 'smooth'})">View My Work</button>
+</section>
 
-    <section id="skills" class="container">
-        <h2>Skills</h2>
-        <ul>
-            <li>Programming Languages: C,Java, Python, JavaScript</li>
-            <li>Web Development: HTML, CSS, JavaScript, React</li>
-            <li>Database Management: MySQL, MongoDB</li>
-            <li>Version Control: Git, GitHub</li>
-        </ul>
-    </section>
+<section id="about">
+  <h2>About Me</h2>
+  <p>Final-year B.Tech (IT) student at Anna University with a strong interest in software engineering, artificial intelligence, and full-stack web development. I have worked on diverse projects including a phishing detection system, student management system, airplane sentiment analysis, and a multi-feature web app. Passionate about problem-solving and innovation, I aim to build impactful, real-world solutions that combine technical excellence with user-focused design.</p>
+</section>
 
-    <section id="contact" class="container">
-        <h2>Contact</h2>
-        <p>If you'd like to get in touch, feel free to reach out via email or connect with me on LinkedIn.</p>
-        <p>Email: <a href="mailto:yazhiniv120305@gmail.com">yazhiniv120305@gmail.com</a></p>
-        <p>LinkedIn: <a href="https://www.linkedin.com/in/yazhini-v-1854a7306" target="_blank">www.linkedin.com/in/yazhini-v-1854a7306</a></p>
-    </section>
+<section id="skills">
+    <h2>Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-card">💻 Python</div>
+      <div class="skill-card">💻 Java</div>
+      <div class="skill-card">💻 C</div>
+      <div class="skill-card">💻 JavaScript</div>
+      <div class="skill-card">🌐 HTML5 & CSS3</div>
+      <div class="skill-card">🌐 React.js</div>
+      <div class="skill-card">🌐 Node.js & Express.js</div>
+      <div class="skill-card">🔗 REST API</div>
+      <div class="skill-card">🗄️ MySQL</div>
+      <div class="skill-card">🗄️ MongoDB</div>
+      <div class="skill-card">🗄️ Supabase PostgreSQL</div>
+      <div class="skill-card">⚙️ Git & GitHub</div>
+      <div class="skill-card">🤖 Scikit-learn</div>
+      <div class="skill-card">🤖 ML & NLP</div>
+    </div>
+  </section>
+  
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 Yazhini. All rights reserved.</p>
-            <div class="social-links">
-                <a href="https://github.com/YazhiniVenkatesan12" target="_blank">GitHub</a>
-                <a href="https://www.linkedin.com/in/yazhini-v-1854a7306" target="_blank">LinkedIn</a>
-            </div>
-        </div>
-    </footer>
+<section id="projects">
+    <h2>Projects</h2>
+    <div class="projects-grid">
+      <div class="project-card">
+        <h3>Phishing Detection System</h3>
+        <p>ML & NLP-based detection system outperforming existing research papers using ensemble learning.</p>
+      </div>
+      <div class="project-card">
+        <h3>Student Management System</h3>
+        <p>Fullstack web app for managing students, courses, and grades with authentication and CRUD features.</p>
+        <a href="https://student-management-c716a.web.app/students" target="_blank" style="color:#38bdf8;">🔗 Live Demo</a>
+      </div>
+      <div class="project-card">
+        <h3>Airplane Sentiment Analysis</h3>
+        <p>Natural Language Processing model analyzing airline passenger reviews for sentiment trends.</p>
+        <a href="https://airline-sentiment-analyzer.streamlit.app/" target="_blank" style="color:#38bdf8;">🔗 Live Demo</a>
+      </div>
+      <div class="project-card">
+        <h3>Simple Fullstack Programs</h3>
+        <p>Fullstack app with features like to-do list, microblog, food delivery, and used product reselling.</p>
+        <a href="https://yazhinivenkatesan12.github.io/fullstackprograms/exercise/" target="_blank" style="color:#38bdf8;">🔗 Live Demo</a>
+      </div>
+    </div>
+  </section>
+  
 
-    <script src="script.js"></script>
+<section id="contact">
+  <h2>Contact</h2>
+  <p>Let’s connect and collaborate on exciting projects.</p>
+  <div class="contact-links">
+    <a href="mailto:yazhiniv120305@gmail.com">📧 Email</a>
+    <a href="https://www.linkedin.com/in/yazhini-v-1854a7306" target="_blank">💼 LinkedIn</a>
+    <a href="https://github.com/YazhiniVenkatesan12" target="_blank">🐙 GitHub</a>
+  </div>
+</section>
+
+<footer>
+  &copy; 2025 Yazhini V | All rights reserved.
+</footer>
+
 </body>
 </html>
-
